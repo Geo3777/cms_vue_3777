@@ -19,6 +19,6 @@ export default {
   font-size: 20px;
   background-color: #28283d;
   color: white;
-  width: 99vw;
+  width: 100vw;
 }
 </style>
