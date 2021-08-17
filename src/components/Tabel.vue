@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'CMS',
+  name: 'Tabel',
   props: {
     msg: String
   }
