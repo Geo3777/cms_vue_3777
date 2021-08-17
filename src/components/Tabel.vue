@@ -1,34 +1,22 @@
 <template>
-  <div class="tabell table-responsive float-left">
+  <div class="tabell table-responsive">
     <table class="table table-hover table-dark ">
       <thead>
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Handle</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Picture</th>
+          <th>Email</th>
+          <th>Gender</th>
+          <th>Bithdate</th>
+          <th>Update</th>
+          <th>Delete</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td colspan="2">Larry the Bird</td>
-          <td>@twitter</td>
-        </tr>
-      </tbody>
     </table>
+  </div>
+  <div class="wrapper">
+    <button type="button" class="btn btn-dark btn-lg">Load More</button>
   </div>
 </template>
 
@@ -43,11 +31,17 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 table {
-  margin-top:  23vh;
+  margin-top: 25vh;
   width: 90vw;
   margin-left: auto;
   margin-right: auto;
+  color: #a0a0a0;
+}
+.wrapper {
+  text-align: center;
+}
+.btn {
+  color: #a0a0a0;
 }
 </style>

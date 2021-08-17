@@ -17,8 +17,8 @@ export default {
   padding: 50px;
   text-align: center;
   font-size: 20px;
-  background-color: #28283d;
-  color: white;
+  background-color: #1b1b2a;
+  color: #a0a0a0;
   width: 100vw;
 }
 </style>
