@@ -9,10 +9,18 @@
           <th>Email</th>
           <th>Gender</th>
           <th>Bithdate</th>
-          <th>Update</th>
-          <th>Delete</th>
         </tr>
       </thead>
+      <tbody>
+        <tr v-for="(employee, index) in employees" v-bind:key="index">
+          <td>{{ employee.fname }}</td>
+          <td>{{ employee.lname }}</td>
+          <td>{{ employee.photo }}</td>
+          <td>{{ employee.email }}</td>
+          <td>{{ employee.sex }}</td>
+          <td>{{ employee.bday }}</td>
+        </tr>
+      </tbody>
     </table>
   </div>
   <div class="wrapper">
@@ -21,10 +29,35 @@
 </template>
 
 <script>
+import db from "@/fb";
 export default {
   name: "Tabel",
-  props: {
-    msg: String,
+  data() {
+    return {
+      employees: [],
+      employee: {
+        fname: null,
+        lname: null,
+        photo: null,
+        email: null,
+        sex: null,
+        bday: null,
+      },
+    };
+  },
+
+  methods: {},
+
+  created() {
+    db.collection("users")
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          // doc.data() is never undefined for query doc snapshots
+          console.log(doc.id, " => ", doc.data());
+          this.employees.push(doc.data());
+        });
+      });
   },
 };
 </script>

@@ -26,7 +26,7 @@
         </div>
         <div class="inputfield">
           <label>Email Address</label>
-          <input type="text" class="input" required email />
+          <input type="text" class="input" required />
         </div>
         <div class="inputfield">
           <label>Gender</label>
@@ -43,7 +43,12 @@
           <input type="date" name="bday" id="bday" class="input" required />
         </div>
         <div class="inputfield">
-          <input type="submit" value="Add Employee" class="btn" />
+          <input
+            type="submit"
+            v-on:click="submit()"
+            value="Add Employee"
+            class="btn"
+          />
         </div>
       </form>
     </div>
@@ -51,9 +56,38 @@
 </template>
 
 <script>
+import db from "@/fb";
 export default {
   name: "Formular",
-  props: {},
+  data() {
+    return {
+      employees: [],
+      employee: {
+        fname: null,
+        lname: null,
+        photo: null,
+        email: null,
+        sex: null,
+        bday: null,
+      },
+    };
+  },
+
+  methods: {
+    submit() {
+      const employee = {
+        fname: this.fname,
+        lname: this.lname,
+        photo: this.photo,
+        email: this.email,
+        sex: this.sex,
+        bday: (this.bday, "Do MMM YYYY"),
+      };
+      db.collection("users")
+        .doc(employee.id)
+        .set(employee);
+    },
+  },
 };
 </script>
 
