@@ -104,10 +104,12 @@ export default {
 
           //{ merge: true }
         );
-      //this.$refs.formm.reset();
+      this.$refs.formm.reset();
+      /*
       setTimeout(() => {
         window.location.reload();
       }, 500);
+      */
     },
   },
 };

@@ -48,15 +48,12 @@ export default {
   methods: {},
 
   created() {
-    db.collection("users")
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          // doc.data() is never undefined for query doc snapshots
-          console.log(doc.id, " => ", doc.data());
-          this.employees.push(doc.data());
-        });
+    db.collection("users").onSnapshot((snap) => {
+      this.employees = [];
+      snap.forEach((doc) => {
+        this.employees.push(doc.data());
       });
+    });
   },
 };
 </script>
