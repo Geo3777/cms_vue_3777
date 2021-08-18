@@ -71,6 +71,7 @@ function getRandomIntInclusive() {
   return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
 }
 import db from "@/fb";
+//import TabelVue from "./Tabel.vue";
 export default {
   name: "Formular",
   data() {
@@ -103,7 +104,10 @@ export default {
 
           //{ merge: true }
         );
-      this.$refs.formm.reset();
+      //this.$refs.formm.reset();
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
     },
   },
 };
