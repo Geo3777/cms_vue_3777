@@ -5,7 +5,6 @@
         <tr>
           <th>First Name</th>
           <th>Last Name</th>
-          <th>Picture</th>
           <th>Email</th>
           <th>Gender</th>
           <th>Bithdate</th>
@@ -15,7 +14,6 @@
         <tr v-for="(employee, index) in employees" v-bind:key="index">
           <td>{{ employee.fname }}</td>
           <td>{{ employee.lname }}</td>
-          <td>{{ employee.photo }}</td>
           <td>{{ employee.email }}</td>
           <td>{{ employee.sex }}</td>
           <td>{{ employee.bday }}</td>
@@ -36,9 +34,10 @@ export default {
     return {
       employees: [],
       employee: {
+        id: null,
         fname: null,
         lname: null,
-        photo: null,
+        //photo: null,
         email: null,
         sex: null,
         bday: null,

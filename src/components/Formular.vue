@@ -4,14 +4,21 @@
       <div class="title">
         Add a new Employee
       </div>
-      <form style="background-color:#23272a" class="form">
+      <form
+        style="background-color:#23272a"
+        class="form"
+        action="javascript:void(0)"
+        id="textareaInput"
+        ref="formm"
+        @submit="Submitt"
+      >
         <div class="inputfield">
           <label>First Name</label>
-          <input type="text" class="input" required />
+          <input type="text" class="input" v-model="fname" required />
         </div>
         <div class="inputfield">
           <label>Last Name</label>
-          <input type="text" class="input" required />
+          <input type="text" class="input" v-model="lname" required />
         </div>
         <div class="inputfield" style="background-color:#23272a">
           <label>Image</label>
@@ -26,12 +33,12 @@
         </div>
         <div class="inputfield">
           <label>Email Address</label>
-          <input type="text" class="input" required />
+          <input type="text" class="input" v-model="email" required />
         </div>
         <div class="inputfield">
           <label>Gender</label>
           <div class="custom_select">
-            <select class="selectt" required>
+            <select class="selectt" v-model="sex" required>
               <option value="">Select</option>
               <option value="male">Male</option>
               <option value="female">Female</option>
@@ -40,15 +47,17 @@
         </div>
         <div class="inputfield">
           <label>Birthdate</label>
-          <input type="date" name="bday" id="bday" class="input" required />
+          <input
+            type="date"
+            name="bday"
+            id="bday"
+            class="input"
+            v-model="bday"
+            required
+          />
         </div>
         <div class="inputfield">
-          <input
-            type="submit"
-            v-on:click="submit()"
-            value="Add Employee"
-            class="btn"
-          />
+          <input type="submit" value="Add Employee" class="btn" />
         </div>
       </form>
     </div>
@@ -56,36 +65,45 @@
 </template>
 
 <script>
+function getRandomIntInclusive() {
+  var min = 0;
+  var max = 100000000000;
+  return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
+}
 import db from "@/fb";
 export default {
   name: "Formular",
   data() {
     return {
-      employees: [],
-      employee: {
-        fname: null,
-        lname: null,
-        photo: null,
-        email: null,
-        sex: null,
-        bday: null,
-      },
+      id: null,
+      fname: null,
+      lname: null,
+      //photo: null,
+      email: null,
+      sex: null,
+      bday: null,
     };
   },
 
   methods: {
-    submit() {
-      const employee = {
-        fname: this.fname,
-        lname: this.lname,
-        photo: this.photo,
-        email: this.email,
-        sex: this.sex,
-        bday: (this.bday, "Do MMM YYYY"),
-      };
+    Submitt() {
+      const idd = getRandomIntInclusive().toString();
       db.collection("users")
-        .doc(employee.id)
-        .set(employee);
+        .doc(idd)
+        .set(
+          {
+            id: idd,
+            fname: this.fname,
+            lname: this.lname,
+            //photo: this.photo,
+            email: this.email,
+            sex: this.sex,
+            bday: this.bday,
+          }
+
+          //{ merge: true }
+        );
+      this.$refs.formm.reset();
     },
   },
 };
