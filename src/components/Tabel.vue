@@ -8,6 +8,7 @@
           <th>Email</th>
           <th>Gender</th>
           <th>Bithdate</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -17,6 +18,15 @@
           <td>{{ employee.email }}</td>
           <td>{{ employee.sex }}</td>
           <td>{{ employee.bday }}</td>
+          <td>
+            <button
+              v-on:click="deleteRow(employee.id)"
+              type="button"
+              class="btn btn-outline-danger "
+            >
+              Delete
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -45,7 +55,13 @@ export default {
     };
   },
 
-  methods: {},
+  methods: {
+    deleteRow(id) {
+      db.collection("users")
+        .doc(id)
+        .delete();
+    },
+  },
 
   created() {
     db.collection("users").onSnapshot((snap) => {
