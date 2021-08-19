@@ -28,6 +28,7 @@
             accept="image/*"
             class="input"
             style="background-color:#23272a"
+            @change="encodeImageFileAsURL()"
             required
           />
         </div>
@@ -71,45 +72,52 @@ function getRandomIntInclusive() {
   return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
 }
 import db from "@/fb";
-//import TabelVue from "./Tabel.vue";
+
 export default {
   name: "Formular",
   data() {
     return {
-      id: null,
-      fname: null,
-      lname: null,
-      //photo: null,
-      email: null,
-      sex: null,
-      bday: null,
+      id: "",
+      fname: "",
+      lname: "",
+      photo: "",
+      email: "",
+      sex: "",
+      bday: "",
     };
   },
 
   methods: {
+    encodeImageFileAsURL() {
+      const file = document.querySelector("input[type=file]").files[0];
+      const reader = new FileReader();
+      var that = this;
+      reader.addEventListener(
+        "load",
+        function() {
+          that.photo = reader.result;
+        },
+        false
+      );
+
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+    },
     Submitt() {
       const idd = getRandomIntInclusive().toString();
       db.collection("users")
         .doc(idd)
-        .set(
-          {
-            id: idd,
-            fname: this.fname,
-            lname: this.lname,
-            //photo: this.photo,
-            email: this.email,
-            sex: this.sex,
-            bday: this.bday,
-          }
-
-          //{ merge: true }
-        );
+        .set({
+          id: idd,
+          fname: this.fname,
+          lname: this.lname,
+          photo: this.photo,
+          email: this.email,
+          sex: this.sex,
+          bday: this.bday,
+        });
       this.$refs.formm.reset();
-      /*
-      setTimeout(() => {
-        window.location.reload();
-      }, 500);
-      */
     },
   },
 };

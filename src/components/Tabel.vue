@@ -5,6 +5,7 @@
         <tr>
           <th>First Name</th>
           <th>Last Name</th>
+          <th>Picture</th>
           <th>Email</th>
           <th>Gender</th>
           <th>Bithdate</th>
@@ -15,6 +16,7 @@
         <tr v-for="(employee, index) in employees" v-bind:key="index">
           <td>{{ employee.fname }}</td>
           <td>{{ employee.lname }}</td>
+          <td><img v-bind:src="employee.photo" class="imgg" /></td>
           <td>{{ employee.email }}</td>
           <td>{{ employee.sex }}</td>
           <td>{{ employee.bday }}</td>
@@ -47,7 +49,7 @@ export default {
         id: null,
         fname: null,
         lname: null,
-        //photo: null,
+        photo: null,
         email: null,
         sex: null,
         bday: null,
@@ -82,11 +84,20 @@ table {
   margin-left: auto;
   margin-right: auto;
   color: #a0a0a0;
+  text-align: center;
+}
+td {
+  vertical-align: middle;
 }
 .wrapper {
   text-align: center;
 }
 .btn {
   color: #a0a0a0;
+}
+.imgg {
+  width: 3vw;
+  height: 6vh;
+  border-radius: 50%;
 }
 </style>
