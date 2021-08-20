@@ -14,11 +14,11 @@
       >
         <div class="inputfield">
           <label>First Name</label>
-          <input type="text" class="input" v-model="fname" required />
+          <input type="text" class="input" v-model="employee1.fname" required />
         </div>
         <div class="inputfield">
           <label>Last Name</label>
-          <input type="text" class="input" v-model="lname" required />
+          <input type="text" class="input" v-model="employee1.lname" required />
         </div>
         <div class="inputfield" style="background-color:#23272a">
           <label>Image</label>
@@ -34,12 +34,12 @@
         </div>
         <div class="inputfield">
           <label>Email Address</label>
-          <input type="text" class="input" v-model="email" required />
+          <input type="text" class="input" v-model="employee1.email" required />
         </div>
         <div class="inputfield">
           <label>Gender</label>
           <div class="custom_select">
-            <select class="selectt" v-model="sex" required>
+            <select class="selectt" v-model="employee1.sex" required>
               <option value="">Select</option>
               <option value="male">Male</option>
               <option value="female">Female</option>
@@ -53,7 +53,7 @@
             name="bday"
             id="bday"
             class="input"
-            v-model="bday"
+            v-model="employee1.bday"
             required
           />
         </div>
@@ -72,18 +72,19 @@ function getRandomIntInclusive() {
   return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
 }
 import db from "@/fb";
-
 export default {
   name: "Formular",
   data() {
     return {
-      id: "",
-      fname: "",
-      lname: "",
-      photo: "",
-      email: "",
-      sex: "",
-      bday: "",
+      employee1: {
+        id: "",
+        fname: "",
+        lname: "",
+        photo: "",
+        email: "",
+        sex: "",
+        bday: "",
+      },
     };
   },
 
@@ -95,7 +96,7 @@ export default {
       reader.addEventListener(
         "load",
         function() {
-          that.photo = reader.result;
+          that.employee1.photo = reader.result;
         },
         false
       );
@@ -110,12 +111,12 @@ export default {
         .doc(idd)
         .set({
           id: idd,
-          fname: this.fname,
-          lname: this.lname,
-          photo: this.photo,
-          email: this.email,
-          sex: this.sex,
-          bday: this.bday,
+          fname: this.employee1.fname,
+          lname: this.employee1.lname,
+          photo: this.employee1.photo,
+          email: this.employee1.email,
+          sex: this.employee1.sex,
+          bday: this.employee1.bday,
         });
       this.$refs.formm.reset();
     },
@@ -127,12 +128,7 @@ export default {
 <style scoped>
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap");
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Montserrat", sans-serif;
-}
+
 
 .wrapper {
   max-width: 500px;

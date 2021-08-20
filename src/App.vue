@@ -7,9 +7,6 @@
       <div class="tabel1">
         <Tabel></Tabel>
       </div>
-      <div class="formular1">
-        <Formular></Formular>
-      </div>
     </div>
   </body>
 </template>
@@ -17,13 +14,12 @@
 <script>
 import Headerr from "./components/Headerr.vue";
 import Tabel from "./components/Tabel.vue";
-import Formular from "./components/Formular.vue";
+
 export default {
   name: "App",
   components: {
     Headerr,
     Tabel,
-    Formular,
   },
 };
 </script>
